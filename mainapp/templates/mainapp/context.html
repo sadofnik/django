@@ -1,0 +1,85 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block css %}
+<!-- Custom styles for this template -->
+<link href="{% static 'css/products.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ title|title }}</h1>
+    <h4>{{ username }}</h4>
+    <h3>Ваши продукты: </h3>
+    {% for product in products %}
+    <p>{{ product.name }} | {{product.price}}</p>
+    {% endfor %}
+
+    {% if promotion_products %}
+    <h3 style="color:red;">Акция</h3>
+    {% for product_promotion in promotion_products %}
+    <p>{{ product_promotion.name }} | {{ product_promotion.price }}</p>
+    {% endfor %}
+    {% endif %}
+
+
+    <div class="col-lg-3">
+        <h1 class="my-4">Меню</h1>
+        <div class="list-group">
+            {% if list_menu %}
+            {% for i in list_menu %}
+            <a href="{% url i.href %}" class="list-group-item"> {{ i.name }}</a>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+    </div>
+
+
+
+
+    <div class="col-lg-9">
+
+        <div class="row">
+            {% block card_product %}
+            {% for card in list_products %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                    <a href="{% url card.href %}">
+                        <img class="card-img-top"
+                             src="{% static card.src %}"
+                             alt="">
+                    </a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="{% url card.href %}">{{ card.name }}</a>
+                        </h4>
+                        <h5>{{ card.price }}</h5>
+                        <p class="card-text">{{ card.desc }}</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button type="button" class="btn btn-outline-success">Отправить в корзину</button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+    {% endblock %}
+
+    {% block footer %}
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Сегодня:     {% now 'N j, Y, P' %}</p>
+            <br>
+            <p class="m-0 text-center text-white">Copyright &copy; GeekShop 2020</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+    {% endblock %}
+

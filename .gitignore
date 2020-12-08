@@ -1,3 +1,4 @@
 .idea
 db.sqlite3
-/geekshop/__pycache__/
+geekshop/__pycache__/
+mainapp/__pycache__/
