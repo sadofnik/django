@@ -21,5 +21,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', mainapp_views.index, name='index'),
     path('products/', mainapp_views.products, name='products'),
-    path('test-context/', mainapp_views.test_context, name='test_context'),
 ]
