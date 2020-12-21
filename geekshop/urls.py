@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', mainapp_views.index, name='index'),
     path('products/', include('mainapp.urls', namespace='products')),
+    path('auth/', include('authapp.urls', namespace='auth')),
 ]
 
 #  Только для локальной работы с изображениями. В settings  должен быть DEBUG=True
