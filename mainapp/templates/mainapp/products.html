@@ -19,7 +19,9 @@
                 <h1 class="my-4">GeekShop</h1>
                 <div class="list-group">
                     {% for pr_cat in products_category %}
-                        <a href="/products/{{ pr_cat.id }}" class="list-group-item"> {{ pr_cat.name }}</a>
+                        {% if category.is_active %}
+                            <a href="/products/{{ category.id }}" class="list-group-item">{{ category.name }}</a>
+                        {% endif %}
                     {% endfor %}
                 </div>
 
